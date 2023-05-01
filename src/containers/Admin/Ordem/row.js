@@ -72,7 +72,7 @@ export function Row({ row }) {
                       <TableCell>{productRow.name_produto}</TableCell>
                       <TableCell >{productRow.price}</TableCell>
                       <TableCell >
-                        {/* <img src={productRow.path} alt="" /> */}
+                        <img src={productRow.path} alt="" />
                       </TableCell>
                     </TableRow>
                   ))} 
@@ -88,3 +88,7 @@ export function Row({ row }) {
 
 
 }
+
+
+
+

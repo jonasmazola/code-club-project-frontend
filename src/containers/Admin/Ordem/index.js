@@ -20,14 +20,16 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 export function Ordem() {
     const [orders, setOrders] = useState([])
     const [rows, setRows] = useState([])
-    console.log(orders)
+
+    // console.log(orders)
 
     useEffect(() => {
 
         async function loadOrders() {
-            const { data } = await api.get('ordem')
+            const { data } = await api.get('novoPedido')
 
             setOrders(data)
+            // console.log(data)
         }
         loadOrders()
     }, [])
@@ -36,13 +38,9 @@ export function Ordem() {
 
     function createData(order) {
         return {
-            name: order.name_usuario,
             id: order.id,
-            data: order.createdAt,
-            status: order.status,
-            quantidade: order.quantidade,
-            price: order.price,
-            products: orders
+            products: order.products,
+            
 
 
         };
@@ -56,7 +54,7 @@ export function Ordem() {
     }, [orders])
 
 
-
+console.log(rows)
 
 
 

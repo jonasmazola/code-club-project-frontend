@@ -39,7 +39,10 @@ export function Ordem() {
     function createData(order) {
         return {
             id: order.id,
+            data: order.createdAt,
             products: order.products,
+            status: order.status,
+            name: order.name_usuario
             
 
 
@@ -54,7 +57,7 @@ export function Ordem() {
     }, [orders])
 
 
-console.log(rows)
+console.log(orders)
 
 
 

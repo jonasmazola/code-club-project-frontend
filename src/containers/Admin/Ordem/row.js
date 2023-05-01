@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "./style";
+import { Container, ImagemProduto } from "./style";
+import formatCurrency from "../../../utils/formatCurrency";
 import api from '../../../services/api'
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -70,9 +71,12 @@ export function Row({ row }) {
                         {productRow.quantidade}
                       </TableCell>
                       <TableCell>{productRow.name_produto}</TableCell>
-                      <TableCell >{productRow.price}</TableCell>
+                      <TableCell >{ formatCurrency(productRow.price)}</TableCell>
                       <TableCell >
-                        <img src={productRow.path} alt="" />
+                        <ImagemProduto src={productRow.path} alt="" />
+                      </TableCell>
+                      <TableCell >
+                        { formatCurrency(productRow.quantidade * productRow.price)} 
                       </TableCell>
                     </TableRow>
                   ))} 

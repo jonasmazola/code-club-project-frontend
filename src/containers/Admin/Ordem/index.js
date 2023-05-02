@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "./style";
+import { Container} from "./style";
 import { Row } from "./row";
 import api from '../../../services/api'
 import Box from '@mui/material/Box';
@@ -57,7 +57,7 @@ export function Ordem() {
     }, [orders])
 
 
-console.log(orders)
+// console.log(orders)
 
 
 
@@ -69,10 +69,12 @@ console.log(orders)
                     <TableHead>
                         <TableRow>
                             <TableCell />
+                        
                             <TableCell>Pedido</TableCell>
                             <TableCell >Usuario</TableCell>
                             <TableCell >Data do pedido</TableCell>
                             <TableCell >Status</TableCell>
+                        
                         </TableRow>
                     </TableHead>
                     <TableBody>

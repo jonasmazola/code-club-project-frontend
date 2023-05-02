@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Container, ImagemProduto } from "./style";
+import Select from "react-select"
+import {ImagemProduto, ReactSelect } from "./style";
 import formatCurrency from "../../../utils/formatCurrency";
 import api from '../../../services/api'
 import Box from '@mui/material/Box';
@@ -15,10 +16,28 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import formatarData from '../../../utils/formatDate'
+import status from "./ordem-status";
 
 
 export function Row({ row }) {
   const [open, setOpen] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+
+
+  async function setNewStatus(id, status) {
+    setIsLoading(true)
+    try {
+      await api.put('/novoPedido/' + id, { status })
+
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setIsLoading(false)
+
+    }
+  }
+
 
 
   // console.log(row)
@@ -39,9 +58,25 @@ export function Row({ row }) {
           {row.id}
         </TableCell>
         <TableCell >{row.name}</TableCell>
-        <TableCell >{row.data}</TableCell>
-        <TableCell >{row.status}</TableCell>
-        <TableCell ></TableCell>
+        <TableCell >{formatarData(row.data)}</TableCell>
+       
+
+        <TableCell >
+
+          <ReactSelect options={status}
+            menuPortalTarget={document.body}
+            placeholder="status"
+            defaultValue={status.find(option => option.value === row.status)}
+            onChange={newStatus => {
+              setNewStatus(row.id, newStatus.value)
+            }}
+            isLoading={isLoading}
+          />
+
+
+
+        </TableCell>
+
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -61,8 +96,8 @@ export function Row({ row }) {
                     <TableCell >Total a pagar ($)</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>          
-                   {row.products.map((productRow) => (
+                <TableBody>
+                  {row.products.map((productRow) => (
                     <TableRow key={productRow.id}>
                       <TableCell component="th" scope="row">
                         {productRow.id}
@@ -71,15 +106,15 @@ export function Row({ row }) {
                         {productRow.quantidade}
                       </TableCell>
                       <TableCell>{productRow.name_produto}</TableCell>
-                      <TableCell >{ formatCurrency(productRow.price)}</TableCell>
+                      <TableCell >{formatCurrency(productRow.price)}</TableCell>
                       <TableCell >
                         <ImagemProduto src={productRow.path} alt="" />
                       </TableCell>
                       <TableCell >
-                        { formatCurrency(productRow.quantidade * productRow.price)} 
+                        {formatCurrency(productRow.quantidade * productRow.price)}
                       </TableCell>
                     </TableRow>
-                  ))} 
+                  ))}
                 </TableBody>
               </Table>
             </Box>

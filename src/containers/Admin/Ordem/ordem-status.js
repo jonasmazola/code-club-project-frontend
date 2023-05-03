@@ -1,8 +1,8 @@
 const status = [
     {
         id: 1,
-        label: 'Pedido Realizado',
-        value: 'Pedido Realizado'
+        label: 'Todos',
+        value: 'Todos'
     },
 
     {
@@ -41,7 +41,14 @@ const status = [
         value: 'novo pedido'
     },
 
-    
+    {
+        id: 8,
+        label: 'Pedido Realizado',
+        value: 'Pedido Realizado'
+    }
+
+
+
 ]
 
 

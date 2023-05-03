@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select"
-import {ImagemProduto, ReactSelect } from "./style";
+import {ImagemProduto, ReactSelect} from "./style";
 import formatCurrency from "../../../utils/formatCurrency";
 import api from '../../../services/api'
 import Box from '@mui/material/Box';
@@ -20,7 +20,7 @@ import formatarData from '../../../utils/formatDate'
 import status from "./ordem-status";
 
 
-export function Row({ row }) {
+export function Row({ row, setOrders, orders }) {
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -29,6 +29,12 @@ export function Row({ row }) {
     setIsLoading(true)
     try {
       await api.put('/novoPedido/' + id, { status })
+
+
+      const newOrders = orders.map( order => {
+        return order.id === id ? {... order, status} : order
+      })
+      setOrders(newOrders)
 
     } catch (err) {
       console.error(err)
@@ -63,7 +69,7 @@ export function Row({ row }) {
 
         <TableCell >
 
-          <ReactSelect options={status}
+          <ReactSelect options={status.filter(sts => sts.label !== 'Todos')}
             menuPortalTarget={document.body}
             placeholder="status"
             defaultValue={status.find(option => option.value === row.status)}
@@ -98,7 +104,7 @@ export function Row({ row }) {
                 </TableHead>
                 <TableBody>
                   {row.products.map((productRow) => (
-                    <TableRow key={productRow.id}>
+                    <TableRow key={productRow.id} >
                       <TableCell component="th" scope="row">
                         {productRow.id}
                       </TableCell>

@@ -5,8 +5,6 @@ export const Container = styled.div `
 
 background-color: #EFEFEF;
 min-height: 100vh;
-padding: 20px;
-
 `
 
 
@@ -37,11 +35,11 @@ export const Menu = styled.div `
 `
 
 export const LinkMenu = styled.a `
-    color: ${props => props.isActive ? '#569cd6': '#323d5d'};
+    color: ${props => props.isActive ? '#6a7bb7': '#2b2c40;'};
     padding-bottom: 10px;
     border-bottom: ${props => props.isActive ? '2px solid #c57971' : ''};
     cursor: pointer;
-    font-weight: ${props => props.isActive ? 'bold' : '100'};
+    font-weight: ${props => props.isActive ? 'bold' : '200'};
 
 
 `

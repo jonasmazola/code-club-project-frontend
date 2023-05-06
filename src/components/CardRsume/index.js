@@ -5,7 +5,8 @@ import formatCurrency from '../../utils/formatCurrency'
 import { Button } from './style'
 import { Container } from "./style";
 import { toast } from "react-toastify";
-
+import { useHistory } from "react-router-dom";
+import paths from "../../constants/path";
 
 
 
@@ -14,6 +15,7 @@ export function CartResume() {
 
     const [finalPrice, setFinalPrice] = useState(0)
     const [deliveryTax] = useState(5)
+    const {push} = useHistory()
 
     const { cartProducts } = useCart()
 
@@ -46,7 +48,14 @@ export function CartResume() {
                 success: 'Realizado com sucesso',
                 error: 'tente novamente'
             }
-        )
+
+            
+            )
+
+            setTimeout(() => {
+                localStorage.removeItem('codeburger:cartInfo')
+                push('/produtos')
+            }, 2000);
 
 
 

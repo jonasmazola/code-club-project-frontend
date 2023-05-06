@@ -16,6 +16,7 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import status from "./ordem-status";
+import { HeaderMenu } from "../../../components";
 
 
 export function Ordem() {
@@ -91,44 +92,46 @@ export function Ordem() {
 
 
     return (
+        <>
+        <HeaderMenu title={'Listagem de todos os pedidos Realizados'} />
+            <Container>
+                <Menu>
+                    {status && status.map(status => (
+                        <LinkMenu key={status.id}
+                            onClick={() => handlesStatus(status)}
+                            isActive={activeStatus === status.id}
+                        >
 
-        <Container>
-            <Menu>
-                {status && status.map(status => (
-                    <LinkMenu key={status.id}
-                        onClick={() => handlesStatus(status)}
-                        isActive={activeStatus === status.id}
-                    >
+                            {status.label}<P>Total: {status.label === 'Todos' ? orders.length : orders.filter(qtd => qtd.status === status.label).length}</P>
 
-                        {status.label}<P>Total: {status.label === 'Todos' ? orders.length : orders.filter(qtd => qtd.status === status.label).length}</P>
+                        </LinkMenu>
 
-                    </LinkMenu>
-
-                ))}
-            </Menu>
+                    ))}
+                </Menu>
 
 
 
-            <TableContainer component={Paper}>
-                <Table aria-label="collapsible table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell />
+                <TableContainer component={Paper}>
+                    <Table aria-label="collapsible table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell />
 
-                            <TableCell>Pedido</TableCell>
-                            <TableCell >Usuario</TableCell>
-                            <TableCell >Data do pedido</TableCell>
-                            <TableCell >Status</TableCell>
+                                <TableCell>Pedido</TableCell>
+                                <TableCell >Usuario</TableCell>
+                                <TableCell >Data do pedido</TableCell>
+                                <TableCell >Status</TableCell>
 
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <Row key={row.id} row={row} setOrders={setOrders} orders={orders} />
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </Container>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {rows.map((row) => (
+                                <Row key={row.id} row={row} setOrders={setOrders} orders={orders} />
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Container>
+        </>
     )
 }

@@ -19,8 +19,15 @@ function Routes() {
                 <PrivateRoute exact component={Home} path={"/"} />
                 <PrivateRoute component={Products} path={"/produtos"} />
                 <PrivateRoute component={Cart} path={"/carrinho"} />
+
                 <PrivateRoute component={Admin} path={paths.Ordem} isAdmin />
                 <PrivateRoute component={Admin} path={paths.Products} isAdmin />
+                <PrivateRoute component={Admin} path={paths.NewProduct} isAdmin />
+                <PrivateRoute component={Admin} path={paths.EditProduct} isAdmin />
+                <PrivateRoute component={Admin} path={paths.Category} isAdmin />
+                <PrivateRoute component={Admin} path={paths.NewCategory} isAdmin />
+                <PrivateRoute component={Admin} path={paths.EditCategory} isAdmin />
+                
             </Switch>
         </Router>
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
 background: #2b2c40;
-width: 300px;
+min-width: 300px;
 top: 0;
 left: 0;
 
@@ -20,6 +20,7 @@ export const ItemContainer = styled.div `
    height: 50px;
    display: flex;
    align-items: center;
+  
    background: ${props => props.isActive ? '#6a7bb7' : 'none'};
    border-radius: 10px;
    margin: 10px;

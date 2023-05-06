@@ -13,22 +13,20 @@ export const Container = styled.div`
 
 `
 
-export const ImgProduto = styled.div `
-
+export const ImgCategoria = styled.div`
 
 img{
    width: 20%;
    border-radius: 10px;
 }
-
 `
 
-export const Edite = styled(EditIcon) `
+export const Edite = styled(EditIcon)`
    cursor: pointer;
    color: #6a7bb7;
 `
 
-export const Delete = styled(DeleteIcon) `
+export const Delete = styled(DeleteIcon)`
    cursor: pointer;
 
 `

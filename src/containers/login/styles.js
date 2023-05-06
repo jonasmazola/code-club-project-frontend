@@ -39,12 +39,6 @@ height: 66%;
     
 `
 
-export const Error = styled.p `
-    color: #fe8b7e;
-    margin: 4px 0 0 10px;
-    font-size: 15px;
-    
-`
 
 export const Label = styled.p`
 color: #FFFFFF;

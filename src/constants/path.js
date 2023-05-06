@@ -1,8 +1,12 @@
 const paths = {
     Ordem: '/pedidos',
     Products: '/listar-produtos',
-    EditProduct: 'eidtar-produtos',
-    NewProduct: '/Ordem'
+    EditProduct: '/editar-produto',
+    NewProduct: '/novo-produto',
+    Category: '/listar-categoria',
+    NewCategory: '/nova-categoria',
+    EditCategory: '/editar-categoria'
+    
 
 }
 

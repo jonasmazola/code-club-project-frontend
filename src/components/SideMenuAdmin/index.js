@@ -6,7 +6,7 @@ import { useUser } from '../../hooks/UserContext'
 
 
 
-export function SideMenuAdmin() {
+export function SideMenuAdmin({path}) {
 const { logout } = useUser()
 
 
@@ -15,7 +15,7 @@ const { logout } = useUser()
     <Container>
       <hr></hr>
       {ListLink.map((list) => (
-        <ItemContainer key={list.id} isActive={true}>
+        <ItemContainer key={list.id} isActive={path === list.link}>
           <list.icon className="icon" />
           <ListLinkItem to={list.link}>
             {list.label}
@@ -24,7 +24,7 @@ const { logout } = useUser()
       ))}
       <hr></hr>
 
-      <ItemContainer style={{ position: 'absolute', bottom: '30px', width: '200px' }}>
+      <ItemContainer style={{ position: 'fixed', bottom: '30px', width: '200px' }}>
         <ExitToAppIcon style={{ color: '#ffffff' }} />
         <ListLinkItem style={{ color: '#ffffff', marginLeft: '10px', cursor: 'pointer' }}
         to='/login' onClick={logout}>Sair</ListLinkItem>

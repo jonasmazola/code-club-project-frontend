@@ -16,10 +16,11 @@ import {
     LoginImage,
     ContainerItens,
     Label,
-    Error,
     Input,
     EntrarLink
 } from './styles'
+
+import { ErrorMessage } from "../../components/ErroMenssage";
 
 
 
@@ -100,12 +101,12 @@ export function Login() {
                     <Label>Email</Label>
                     <Input type="email" {...register("email")}
                         error={errors.email?.message}></Input>
-                    <Error>{errors.email?.message}</Error>
+                    <ErrorMessage>{errors.email?.message}</ErrorMessage>
 
                     <Label>Senha</Label>
                     <Input type="password" {...register("password")}
                         error={errors.password?.message}></Input>
-                    <Error>{errors.password?.message}</Error>
+                    <ErrorMessage>{errors.password?.message}</ErrorMessage>
 
 
                     <Button type="submit" title="Sing in" style={{ color: 'red' }} >  </Button>
